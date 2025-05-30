@@ -1,0 +1,568 @@
+/* Custom styling for ADM1 Simulation Reports */
+
+:root {
+  --primary-color: #0f4c81; /* Professional blue */
+  --secondary-color: #88b0cd; /* Lighter blue */
+  --accent-color: #3c7a89; /* Teal accent */
+  --success-color: #2e8b57; /* Sea green */
+  --warning-color: #e6a817; /* Amber */
+  --danger-color: #c94c4c; /* Muted red */
+  --text-color: #333333; /* Dark gray for text */
+  --background-color: #ffffff; /* White background */
+  --sidebar-bg: #f8f9fa; /* Light gray for sidebar */
+  --border-color: #dee2e6; /* Light gray for borders */
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+h1 {
+  font-size: 2.2em;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 1.8em;
+  border-bottom: 1px solid var(--secondary-color);
+  padding-bottom: 0.2em;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: var(--accent-color);
+}
+
+.section-icon {
+  margin-right: 10px;
+  color: var(--accent-color);
+}
+
+/* Header and Title */
+.quarto-title {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.quarto-title-meta {
+  color: white;
+}
+
+/* TOC Styling */
+#TOC {
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+}
+
+#TOC a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+#TOC a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+th {
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: bold;
+}
+
+td {
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Caption styling for tables */
+caption {
+  caption-side: top;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--primary-color);
+  padding: 10px 0;
+  text-align: left;
+}
+
+/* Plotly figures */
+.plotly {
+  margin-top: 1.5em;
+  margin-bottom: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Box styling */
+.summary-box {
+  border-left: 4px solid var(--primary-color);
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+.info-box {
+  border-left: 4px solid var(--accent-color);
+  background-color: rgba(60, 122, 137, 0.1);
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+.warning-box {
+  border-left: 4px solid var(--warning-color);
+  background-color: rgba(230, 168, 23, 0.1);
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+.error-box {
+  border-left: 4px solid var(--danger-color);
+  background-color: rgba(201, 76, 76, 0.1);
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+.success-box {
+  border-left: 4px solid var(--success-color);
+  background-color: rgba(46, 139, 87, 0.1);
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+/* KPI cards for summary section */
+.kpi-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+  justify-content: space-between;
+}
+
+.kpi-card {
+  flex: 1 1 300px;
+  margin: 10px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.kpi-title {
+  font-size: 1em;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.kpi-value {
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.kpi-unit {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.kpi-icon {
+  font-size: 2em;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+/* Tool response formatting for professional reports */
+.tool-response-card {
+  margin: 20px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  background-color: white;
+}
+
+.tool-response-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tool-response-header h4 {
+  margin: 0;
+  font-size: 1.1em;
+  color: white;
+}
+
+.tool-response-timestamp {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.tool-response-description {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tool-response-description p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.tool-response-content {
+  padding: 15px;
+  overflow-x: auto;
+}
+
+.tool-response-content pre {
+  margin: 0;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.tool-response-content code {
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Footer styling */
+.footer-info {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Enhanced table styling for data parsers */
+.adm1-data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 20px 0;
+  font-size: 0.9em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.adm1-data-table thead tr {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: left;
+}
+
+.adm1-data-table th,
+.adm1-data-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.adm1-data-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.adm1-data-table tbody tr:nth-of-type(even) {
+  background-color: #f8f9fa;
+}
+
+.adm1-data-table tbody tr:hover {
+  background-color: rgba(15, 76, 129, 0.05);
+}
+
+.category-header {
+  background-color: var(--secondary-color) !important;
+  font-weight: bold;
+  color: var(--primary-color) !important;
+  font-style: italic;
+}
+
+/* Styled DataFrame enhancements */
+.dataframe {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 5px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  margin: 20px 0 !important;
+  width: 100% !important;
+}
+
+.dataframe thead th {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  padding: 12px 15px !important;
+  border: none !important;
+}
+
+.dataframe tbody td {
+  padding: 10px 15px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.dataframe tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.dataframe tbody tr:hover {
+  background-color: rgba(15, 76, 129, 0.05) !important;
+}
+
+.dataframe caption {
+  caption-side: top !important;
+  font-weight: bold !important;
+  font-size: 1.1em !important;
+  color: var(--primary-color) !important;
+  padding: 10px 0 !important;
+  text-align: left !important;
+  margin-bottom: 0 !important;
+}
+
+/* Assessment indicators */
+.assessment-excellent {
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.assessment-good {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.assessment-moderate {
+  color: var(--warning-color);
+  font-weight: bold;
+}
+
+.assessment-poor {
+  color: var(--danger-color);
+  font-weight: bold;
+}
+
+/* Process performance dashboard styling */
+.performance-dashboard {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced KPI cards */
+.kpi-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px 20px -10px;
+  justify-content: space-between;
+}
+
+.kpi-card {
+  flex: 1 1 200px;
+  min-width: 200px;
+  margin: 10px;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(15, 76, 129, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.kpi-title {
+  font-size: 0.9em;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpi-value {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.kpi-unit {
+  font-size: 0.85em;
+  color: #666;
+  font-weight: 500;
+}
+
+.kpi-icon {
+  font-size: 2.5em;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+/* Process status indicators */
+.process-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-excellent {
+  background-color: rgba(46, 139, 87, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(46, 139, 87, 0.2);
+}
+
+.status-good {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.status-moderate {
+  background-color: rgba(230, 168, 23, 0.1);
+  color: var(--warning-color);
+  border: 1px solid rgba(230, 168, 23, 0.2);
+}
+
+.status-poor {
+  background-color: rgba(201, 76, 76, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(201, 76, 76, 0.2);
+}
+
+/* Section dividers */
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, transparent 100%);
+  margin: 30px 0;
+}
+
+/* Enhanced plotly figure containers */
+.plotly-graph-div {
+  margin: 20px 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
+  background-color: white !important;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .kpi-card {
+    flex: 1 1 100%;
+    min-width: unset;
+  }
+  
+  .kpi-container {
+    flex-direction: column;
+  }
+  
+  table, .dataframe {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .adm1-data-table th,
+  .adm1-data-table td,
+  .dataframe th,
+  .dataframe td {
+    padding: 8px 10px !important;
+    font-size: 0.85em !important;
+  }
+
+  .kpi-value {
+    font-size: 1.8em;
+  }
+  
+  .kpi-icon {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-card {
+    padding: 15px;
+  }
+  
+  .kpi-value {
+    font-size: 1.6em;
+  }
+  
+  .kpi-title {
+    font-size: 0.8em;
+  }
+}

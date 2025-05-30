@@ -1,0 +1,7 @@
+numpy>=1.20.0
+scipy>=1.7.0
+qsdsan>=1.0.0
+chemicals>=1.0.0
+google-genai
+python-dotenv>=0.20.0
+mcp
