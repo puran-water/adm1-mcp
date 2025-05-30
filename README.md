@@ -297,7 +297,13 @@ cat .env
 
 ## License
 
-This project builds upon the original ADM1 implementation and follows appropriate licensing for scientific software.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Dependencies and Acknowledgments
+
+This project builds upon the excellent [QSDsan](https://github.com/QSD-Group/QSDsan) framework for quantitative sustainable design of sanitation and resource recovery systems, which is licensed under the University of Illinois/NCSA Open Source License. We gratefully acknowledge the Quantitative Sustainable Design Group for their foundational work in anaerobic digestion modeling.
+
+The ADM1 implementation follows the internationally recognized standard developed by the International Water Association (IWA) Task Group for Mathematical Modelling of Anaerobic Digestion Processes.
 
 ## Contributing
 
