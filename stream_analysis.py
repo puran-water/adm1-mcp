@@ -1,9 +1,9 @@
 """
 Stream property calculations and analysis
 """
-from adm1_mcp_server.simulation import calculate_effluent_COD, calculate_gas_properties, calculate_biomass_yields
-from adm1_mcp_server.utils import CALCULATE_PH_AVAILABLE
-from adm1_mcp_server.calculate_ph_and_alkalinity_fixed import update_ph_and_alkalinity as update_ph_alk_fixed 
+from simulation import calculate_effluent_COD, calculate_gas_properties, calculate_biomass_yields
+from utils import CALCULATE_PH_AVAILABLE
+from calculate_ph_and_alkalinity_fixed import update_ph_and_alkalinity as update_ph_alk_fixed 
 import sys
 import os
 import numpy as np

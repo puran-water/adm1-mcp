@@ -6,7 +6,7 @@ import sys
 import numpy as np
 from qsdsan import sanunits as su, processes as pc, WasteStream, System
 from chemicals.elements import molecular_weight as get_mw
-from adm1_mcp_server.utils import C_mw, N_mw, CALCULATE_PH_AVAILABLE
+from utils import C_mw, N_mw, CALCULATE_PH_AVAILABLE
 
 # Add the parent directory to sys.path
 parent_dir = os.path.dirname(os.path.abspath(__file__))

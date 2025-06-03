@@ -15,12 +15,11 @@ from numbers import Number # To check if a value is numeric
 from qsdsan import processes as pc
 # from qsdsan.utils import load_components # Import necessary QSDsan functions
 from mcp.server.fastmcp import FastMCP
-from adm1_mcp_server.simulation import run_simulation, create_influent_stream
-from adm1_mcp_server.ai_assistant import GeminiClient  # Keep import
-from adm1_mcp_server.inhibition import analyze_inhibition
-from adm1_mcp_server.stream_analysis import analyze_liquid_stream, analyze_gas_stream, analyze_biomass_yields
-from adm1_mcp_server.simulation import create_influent_stream # Needs this function
-from adm1_mcp_server.stream_analysis import calculate_charge_balance
+from simulation import run_simulation, create_influent_stream
+from ai_assistant import GeminiClient  # Keep import
+from inhibition import analyze_inhibition
+from stream_analysis import analyze_liquid_stream, analyze_gas_stream, analyze_biomass_yields
+from stream_analysis import calculate_charge_balance
 
 from dotenv import load_dotenv
 
