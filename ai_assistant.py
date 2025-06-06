@@ -23,21 +23,26 @@ class GeminiClient:
         """
         Initialize the GeminiClient
         """
-        print("DEBUG [GeminiClient]: __init__ called.")  # DEBUG Init Start
+        sys.stderr.write("DEBUG [GeminiClient]: __init__ called.\n")
+        sys.stderr.flush()  # DEBUG Init Start
         self.client = self._setup_client()
         if self.client:
-            print("DEBUG [GeminiClient]: Initialization successful, self.client is set.")  # DEBUG Init Success
+            sys.stderr.write("DEBUG [GeminiClient]: Initialization successful, self.client is set.\n")
+            sys.stderr.flush()  # DEBUG Init Success
         else:
-            print("DEBUG [GeminiClient]: Initialization FAILED, self.client is None.")  # DEBUG Init Fail
+            sys.stderr.write("DEBUG [GeminiClient]: Initialization FAILED, self.client is None.\n")
+            sys.stderr.flush()  # DEBUG Init Fail
 
     def _setup_client(self):
         """
         Initialize the Gemini API client
         """
-        print("DEBUG [GeminiClient]: _setup_client called.")  # DEBUG Setup Start
+        sys.stderr.write("DEBUG [GeminiClient]: _setup_client called.\n")
+        sys.stderr.flush()  # DEBUG Setup Start
         
         # Debug environment variables
-        print("DEBUG [GeminiClient]: Checking environment variables...")
+        sys.stderr.write("DEBUG [GeminiClient]: Checking environment variables...\n")
+        sys.stderr.flush()
         google_api_key = os.environ.get("GOOGLE_API_KEY")
         gemini_api_key = os.environ.get("GEMINI_API_KEY") 
         
@@ -45,32 +50,40 @@ class GeminiClient:
         api_key = google_api_key or gemini_api_key
         
         if not api_key:
-            print("DEBUG ERROR [GeminiClient]: Neither GOOGLE_API_KEY nor GEMINI_API_KEY found in environment variables!")
-            print("DEBUG [GeminiClient]: Available env vars:")
+            sys.stderr.write("DEBUG ERROR [GeminiClient]: Neither GOOGLE_API_KEY nor GEMINI_API_KEY found in environment variables!\n")
+            sys.stderr.flush()
+            sys.stderr.write("DEBUG [GeminiClient]: Available env vars:\n")
+            sys.stderr.flush()
             for key in sorted(os.environ.keys()):
                 if 'API' in key or 'KEY' in key or 'GOOGLE' in key or 'GEMINI' in key:
-                    print(f"  {key}: {'[SET]' if os.environ[key] else '[EMPTY]'}")
+                    sys.stderr.write(f"  {key}: {'[SET]' if os.environ[key] else '[EMPTY]'}\n")
+                sys.stderr.flush()
             return None
 
-        print(f"DEBUG [GeminiClient]: Found API Key starting with: {api_key[:5]}...")  # DEBUG Key Found
+        sys.stderr.write(f"DEBUG [GeminiClient]: Found API Key starting with: {api_key[:5]}...\n")
+        sys.stderr.flush()  # DEBUG Key Found
 
         try:
             # Explicitly configure genai here if not done globally
             genai.configure(api_key=api_key) # Might be redundant if server already configures, but can help isolate issues
 
             # --- Try/Except around model initialization ---
-            print("DEBUG [GeminiClient]: Attempting to create GenerativeModel...")
+            sys.stderr.write("DEBUG [GeminiClient]: Attempting to create GenerativeModel...\n")
+            sys.stderr.flush()
             # model_name = "gemini-1.5-pro"  # Use stable production model
             model_name = "gemini-2.5-pro-preview-06-05"  # Preview models may be unstable
             # model_name="gemini-2.5-pro-exp-03-25" # Original experimental name
-            print(f"DEBUG [GeminiClient]: Using model_name: {model_name}")
+            sys.stderr.write(f"DEBUG [GeminiClient]: Using model_name: {model_name}\n")
+            sys.stderr.flush()
             client = genai.GenerativeModel(
                 model_name=model_name
             )
-            print("DEBUG [GeminiClient]: GenerativeModel created successfully.")  # DEBUG Model Create Success
+            sys.stderr.write("DEBUG [GeminiClient]: GenerativeModel created successfully.\n")
+            sys.stderr.flush()  # DEBUG Model Create Success
             return client
         except Exception as e:
-            print(f"DEBUG ERROR [GeminiClient]: Error initializing GenerativeModel: {e}")  # DEBUG Model Create Fail
+            sys.stderr.write(f"DEBUG ERROR [GeminiClient]: Error initializing GenerativeModel: {e}\n")
+            sys.stderr.flush()  # DEBUG Model Create Fail
             traceback.print_exc()  # Print full traceback
             return None
 
@@ -90,9 +103,11 @@ class GeminiClient:
         str or None
             JSON string containing the recommendations or None if an error occurs
         """
-        print("DEBUG [GeminiClient]: get_adm1_recommendations called.")  # DEBUG Method Start
+        sys.stderr.write("DEBUG [GeminiClient]: get_adm1_recommendations called.\n")
+        sys.stderr.flush()  # DEBUG Method Start
         if not self.client:
-            print("DEBUG ERROR [GeminiClient]: self.client is None in get_adm1_recommendations. Cannot proceed.")  # DEBUG Client None
+            sys.stderr.write("DEBUG ERROR [GeminiClient]: self.client is None in get_adm1_recommendations. Cannot proceed.\n")
+            sys.stderr.flush()  # DEBUG Client None
             return None
 
         # System prompt definition (removed for brevity, assuming it's correct)
@@ -118,34 +133,42 @@ class GeminiClient:
 
         if include_kinetics:
             prompt = self._build_full_prompt(feedstock_description)
-            print("DEBUG [GeminiClient]: Built full prompt (with kinetics).")  # DEBUG Prompt Type
+            sys.stderr.write("DEBUG [GeminiClient]: Built full prompt (with kinetics).\n")
+            sys.stderr.flush()  # DEBUG Prompt Type
         else:
             prompt = self._build_feedstock_prompt(feedstock_description)
-            print("DEBUG [GeminiClient]: Built feedstock-only prompt.")  # DEBUG Prompt Type
+            sys.stderr.write("DEBUG [GeminiClient]: Built feedstock-only prompt.\n")
+            sys.stderr.flush()  # DEBUG Prompt Type
 
         # --- Try/Except around API call ---
         try:
-            print(f"DEBUG [GeminiClient]: Calling self.client.generate_content with prompt starting: {prompt[:100]}...")  # DEBUG API Call Start
+            sys.stderr.write(f"DEBUG [GeminiClient]: Calling self.client.generate_content with prompt starting: {prompt[:100]}...\n")
+            sys.stderr.flush()  # DEBUG API Call Start
             response = self.client.generate_content(
-                contents=prompt,
-                tools=google_search_tool
+                contents=prompt
+                # Removed tools parameter - may not be compatible with gemini-1.5-pro
             )
-            print(f"DEBUG [GeminiClient]: API call successful. Response type: {type(response)}")  # DEBUG API Call Success
+            sys.stderr.write(f"DEBUG [GeminiClient]: API call successful. Response type: {type(response)}\n")
+            sys.stderr.flush()  # DEBUG API Call Success
             if hasattr(response, 'text'):
-                print(f"DEBUG [GeminiClient]: Response text preview: {response.text[:100]}...")  # DEBUG API Response Preview
+                sys.stderr.write(f"DEBUG [GeminiClient]: Response text preview: {response.text[:100]}...\n")
+                sys.stderr.flush()  # DEBUG API Response Preview
                 return response.text
             else:
-                print("DEBUG WARNING [GeminiClient]: Response object does not have 'text' attribute.")
+                sys.stderr.write("DEBUG WARNING [GeminiClient]: Response object does not have 'text' attribute.\n")
+                sys.stderr.flush()
                 # Handle potential different response structures (e.g., if function calling occurs)
                 # For now, return a representation or None
-                print(f"DEBUG [GeminiClient]: Full response object: {response}")
+                sys.stderr.write(f"DEBUG [GeminiClient]: Full response object: {response}\n")
+                sys.stderr.flush()
                 # Attempt to extract text differently if needed, or indicate non-text response
                 # If it's a function call response part, we might not get simple text.
                 # For this tool's purpose, we expect text.
                 return None  # Indicate failure to get text
 
         except Exception as e:
-            print(f"DEBUG ERROR [GeminiClient]: Exception during self.client.generate_content: {e}")  # DEBUG API Call Fail
+            sys.stderr.write(f"DEBUG ERROR [GeminiClient]: Exception during self.client.generate_content: {e}\n")
+            sys.stderr.flush()  # DEBUG API Call Fail
             traceback.print_exc()  # Print full traceback
             return None  # Return None on failure
 
@@ -496,7 +519,8 @@ class GeminiClient:
         kinetic_explanations = {}
 
         if not response_text:  # Handle empty response text
-            print("DEBUG WARNING [GeminiClient]: parse_recommendations received empty response_text.")
+            sys.stderr.write("DEBUG WARNING [GeminiClient]: parse_recommendations received empty response_text.\n")
+            sys.stderr.flush()
             return (feedstock_values, feedstock_explanations, kinetic_values, kinetic_explanations)
 
         # Extract JSON - Improved robustness
@@ -513,7 +537,8 @@ class GeminiClient:
                 json_str = response_text[start:end + 1]
 
         if not json_str:
-            print("DEBUG ERROR [GeminiClient]: Could not find JSON block in response.")
+            sys.stderr.write("DEBUG ERROR [GeminiClient]: Could not find JSON block in response.\n")
+            sys.stderr.flush()
             # Optionally, raise a specific error here or return empty dicts
             # raise ValueError("Could not extract JSON from AI response.")
             return (feedstock_values, feedstock_explanations, kinetic_values, kinetic_explanations)
@@ -540,17 +565,22 @@ class GeminiClient:
                         #     print(f"DEBUG WARNING [GeminiClient]: Unexpected key '{key}' found in parsed JSON.")
 
                     except (ValueError, TypeError, IndexError) as e_item:
-                        print(f"DEBUG WARNING [GeminiClient]: Skipping invalid item for key '{key}': {arr}. Error: {e_item}")
+                        sys.stderr.write(f"DEBUG WARNING [GeminiClient]: Skipping invalid item for key '{key}': {arr}. Error: {e_item}\n")
+                        sys.stderr.flush()
                         continue  # Skip this item if value is not a number or structure is wrong
                 else:
-                    print(f"DEBUG WARNING [GeminiClient]: Skipping invalid structure for key '{key}': {arr}")
+                    sys.stderr.write(f"DEBUG WARNING [GeminiClient]: Skipping invalid structure for key '{key}': {arr}\n")
+                    sys.stderr.flush()
 
             return (feedstock_values, feedstock_explanations, kinetic_values, kinetic_explanations)
 
         except json.JSONDecodeError as e:
-            print(f"DEBUG ERROR [GeminiClient]: JSONDecodeError - {e}")
-            print(f"Failed JSON string was: {json_str}")
+            sys.stderr.write(f"DEBUG ERROR [GeminiClient]: JSONDecodeError - {e}\n")
+            sys.stderr.flush()
+            sys.stderr.write(f"Failed JSON string was: {json_str}\n")
+            sys.stderr.flush()
             raise ValueError(f"Error parsing AI JSON response: {e}")  # Re-raise for the tool to catch
         except Exception as e:
-            print(f"DEBUG ERROR [GeminiClient]: Unexpected error during parsing: {e}")
+            sys.stderr.write(f"DEBUG ERROR [GeminiClient]: Unexpected error during parsing: {e}\n")
+            sys.stderr.flush()
             traceback.print_exc()
