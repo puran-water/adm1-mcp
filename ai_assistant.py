@@ -35,9 +35,21 @@ class GeminiClient:
         Initialize the Gemini API client
         """
         print("DEBUG [GeminiClient]: _setup_client called.")  # DEBUG Setup Start
-        api_key = os.environ.get("GOOGLE_API_KEY")
+        
+        # Debug environment variables
+        print("DEBUG [GeminiClient]: Checking environment variables...")
+        google_api_key = os.environ.get("GOOGLE_API_KEY")
+        gemini_api_key = os.environ.get("GEMINI_API_KEY") 
+        
+        # Try both possible environment variable names
+        api_key = google_api_key or gemini_api_key
+        
         if not api_key:
-            print("DEBUG ERROR [GeminiClient]: GOOGLE_API_KEY not found in environment variables during _setup_client!")  # DEBUG Key Missing
+            print("DEBUG ERROR [GeminiClient]: Neither GOOGLE_API_KEY nor GEMINI_API_KEY found in environment variables!")
+            print("DEBUG [GeminiClient]: Available env vars:")
+            for key in sorted(os.environ.keys()):
+                if 'API' in key or 'KEY' in key or 'GOOGLE' in key or 'GEMINI' in key:
+                    print(f"  {key}: {'[SET]' if os.environ[key] else '[EMPTY]'}")
             return None
 
         print(f"DEBUG [GeminiClient]: Found API Key starting with: {api_key[:5]}...")  # DEBUG Key Found
@@ -48,7 +60,8 @@ class GeminiClient:
 
             # --- Try/Except around model initialization ---
             print("DEBUG [GeminiClient]: Attempting to create GenerativeModel...")
-            model_name = "gemini-2.5-pro-preview-05-06"  # TRY THIS STABLE MODEL NAME FIRST
+            # model_name = "gemini-1.5-pro"  # Use stable production model
+            model_name = "gemini-2.5-pro-preview-06-05"  # Preview models may be unstable
             # model_name="gemini-2.5-pro-exp-03-25" # Original experimental name
             print(f"DEBUG [GeminiClient]: Using model_name: {model_name}")
             client = genai.GenerativeModel(
