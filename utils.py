@@ -21,12 +21,8 @@ try:
     from calculate_ph_and_alkalinity_fixed import update_ph_and_alkalinity
     CALCULATE_PH_AVAILABLE = True
 except ImportError:
-    try:
-        from calculate_ph_and_alkalinity import update_ph_and_alkalinity
-        CALCULATE_PH_AVAILABLE = True
-    except ImportError:
-        print("Warning: pH calculation module not found. pH and alkalinity will use default values.")
-        CALCULATE_PH_AVAILABLE = False
+    print("Warning: pH calculation module not found. pH and alkalinity will use default values.")
+    CALCULATE_PH_AVAILABLE = False
 
 # Apply the TSS calculation patch for QSDsan WasteStream
 # Store the original get_TSS method

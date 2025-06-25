@@ -11,13 +11,12 @@ The professional template provides an enhanced reporting capability for the ADM1
 The template consists of the following key components:
 
 - `professional_template.ipynb`: The main Jupyter notebook template for report generation
-- `professional_template_utils.py`: Utility functions specific to the professional report template
-- `report_metadata.py`: Functions to handle and format report metadata
-- `tool_response_formatter.py`: Functions to format tool responses for the report
-- `styles.css`: CSS styling for the report output
 - `analysis_functions.py`: Functions for analyzing simulation results
-- `enhanced_plot_functions.py`: Functions for creating plots
+- `data_parsers.py`: Functions for parsing and processing simulation data
+- `enhanced_functions.py`: Enhanced utility functions for report generation
+- `enhanced_plot_functions.py`: Functions for creating publication-quality plots
 - `kpi_cards.py`: Functions for creating key performance indicator cards
+- `styles.css`: CSS styling for the report output
 
 ## Integration with ADM1 MCP Server
 

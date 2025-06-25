@@ -17,11 +17,8 @@ sys.path.insert(0, adm1_dir)
 try:
     from calculate_ph_and_alkalinity_fixed import update_ph_and_alkalinity
 except ImportError:
-    try:
-        from calculate_ph_and_alkalinity import update_ph_and_alkalinity
-    except ImportError:
-        print("Warning: pH calculation module not found. pH and alkalinity will use default values.")
-        # Define a dummy update function if the module is not available
+    print("Warning: pH calculation module not found. pH and alkalinity will use default values.")
+    # Define a dummy update function if the module is not available
         def update_ph_and_alkalinity(stream):
             if hasattr(stream, '_pH'):
                 stream._pH = 7.0
