@@ -19,12 +19,12 @@ try:
 except ImportError:
     print("Warning: pH calculation module not found. pH and alkalinity will use default values.")
     # Define a dummy update function if the module is not available
-        def update_ph_and_alkalinity(stream):
-            if hasattr(stream, '_pH'):
-                stream._pH = 7.0
-            if hasattr(stream, '_SAlk'):
-                stream._SAlk = 2.5
-            return stream
+    def update_ph_and_alkalinity(stream):
+        if hasattr(stream, '_pH'):
+            stream._pH = 7.0
+        if hasattr(stream, '_SAlk'):
+            stream._SAlk = 2.5
+        return stream
 
 def create_influent_stream(Q, Temp, concentrations):
     """
